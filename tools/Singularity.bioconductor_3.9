@@ -1,0 +1,41 @@
+Bootstrap: docker
+From: bioconductor/release_core2:R3.6.0_Bioc3.9
+
+%help
+
+    R 3.6.0 with Bioconductor 3.9
+    
+%labels
+
+    MAINTAINER "Tom Harrop (twharrop@gmail.com)"
+    VERSION "Bioconductor 3.7"
+
+%post
+
+    # install depenedencies
+    apt-get update
+    apt-get install -y \
+        libbz2-dev \
+        liblzma-dev \
+        libpcre++-dev \
+        tk-dev \
+        tcl-dev
+
+    # install packages from bioconductor
+    Rscript -e "options(Ncpus=8); \
+        BiocInstaller::biocLite(c( \
+            'adegenet', \
+            'DESeq2', \
+            'Mfuzz', \
+            'pheatmap', \
+            'phyloseq', \
+            'SNPRelate', \
+            'systemPipeR', \
+            'valr', \
+            'VariantAnnotation' \
+            ), \
+        type='source', ask=FALSE)"
+
+%runscript
+
+    exec /usr/local/bin/R "$@"
