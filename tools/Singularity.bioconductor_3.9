@@ -11,9 +11,10 @@ From: bioconductor/release_core2:R3.6.0_Bioc3.9
     VERSION "Bioconductor 3.7"
 
 %post
-
     # install depenedencies
-    apt-get update
+    apt-get \
+        -o Acquire::Check-Valid-Until=false \
+        update
     apt-get install -y \
         libbz2-dev \
         liblzma-dev \
@@ -23,7 +24,7 @@ From: bioconductor/release_core2:R3.6.0_Bioc3.9
 
     # install packages from bioconductor
     Rscript -e "options(Ncpus=8); \
-        BiocInstaller::biocLite(c( \
+        BiocManager::install(c( \
             'adegenet', \
             'DESeq2', \
             'Mfuzz', \
