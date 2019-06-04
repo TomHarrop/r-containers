@@ -21,7 +21,7 @@ From: rocker/verse:3.6.0
 
     # install packages from bioconductor
     Rscript -e "options(Ncpus=8); \
-        install.packages("BiocManager") ; \
+        install.packages('BiocManager') ; \
         BiocManager::install(c(\
             'Cairo', \
             'cowplot', \
