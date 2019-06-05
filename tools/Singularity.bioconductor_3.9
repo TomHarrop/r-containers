@@ -17,10 +17,12 @@ From: bioconductor/release_core2:R3.6.0_Bioc3.9
         update
     apt-get install -y \
         libbz2-dev \
+        libgdal-dev \
         liblzma-dev \
         libpcre++-dev \
-        tk-dev \
-        tcl-dev
+        libudunits2-dev \
+        tcl-dev \
+        tk-dev
 
     # install packages from bioconductor
     Rscript -e "options(Ncpus=8); \
