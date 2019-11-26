@@ -1,16 +1,17 @@
-Bootstrap: shub
-From: Bioconductor/bioconductor_full:release_3_9
+Bootstrap: docker
+From: bioconductor/bioconductor_full:RELEASE_3_10
 
 %help
 
-    R 3.6.1 with Bioconductor 3.9
+    R 3.6.1 with Bioconductor 3.10
     
 %labels
 
     MAINTAINER "Tom Harrop (twharrop@gmail.com)"
-    VERSION "Bioconductor 3.9"
+    VERSION "Bioconductor 3.10"
 
 %post
+    exit 0
     # install packages from bioconductor
     Rscript -e "options(Ncpus=8); \
         BiocManager::install(c( \
