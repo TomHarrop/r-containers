@@ -12,7 +12,7 @@ From: rocker/verse:3.6.0
 
 %post
 
-    # install depenedencies
+    # install dependencies
     apt-get update
     apt-get install -y \
         libbz2-dev \
