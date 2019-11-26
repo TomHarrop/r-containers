@@ -11,7 +11,6 @@ From: bioconductor/bioconductor_full:RELEASE_3_10
     VERSION "Bioconductor 3.10"
 
 %post
-    exit 0
     # install packages from bioconductor
     Rscript -e "options(Ncpus=8); \
         BiocManager::install(c( \
@@ -19,6 +18,10 @@ From: bioconductor/bioconductor_full:RELEASE_3_10
             'Biostrings', \
             'dada2', \
             'DESeq2', \
+            'GenomicAlignments', \
+            'GenomicFeatures', \
+            'GenomicRanges', \
+            'Gviz', \
             'Mfuzz', \
             'pheatmap', \
             'phyloseq', \
