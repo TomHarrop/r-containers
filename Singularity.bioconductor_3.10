@@ -30,7 +30,8 @@ From: bioconductor/bioconductor_full:RELEASE_3_10
             'systemPipeR', \
             'tximport', \
             'valr', \
-            'VariantAnnotation' \
+            'VariantAnnotation', \
+            'vcfR' \
             ), \
         type='source', ask=FALSE)"
 
