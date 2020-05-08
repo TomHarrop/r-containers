@@ -1,9 +1,9 @@
 Bootstrap: docker
-From: bioconductor/bioconductor_full:RELEASE_3_10
+From: bioconductor/bioconductor_docker:RELEASE_3_11
 
 %help
 
-    R 3.6.1 with Bioconductor 3.10
+    R 4.0.0 with Bioconductor 3.11
     
 %labels
 
@@ -25,6 +25,7 @@ From: bioconductor/bioconductor_full:RELEASE_3_10
             'Mfuzz', \
             'pheatmap', \
             'phyloseq', \
+            'rehh', \
             'ShortRead', \
             'SNPRelate', \
             'systemPipeR', \
