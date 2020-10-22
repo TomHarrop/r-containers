@@ -11,10 +11,13 @@ From: bioconductor/bioconductor_docker:RELEASE_3_11
     VERSION "Bioconductor 3.11"
 
 %post
+    exit 0
     # install packages from bioconductor
     Rscript -e "options(Ncpus=8); \
         BiocManager::install(c( \
             'adegenet', \
+            'apeglm', \
+            'ashr', \
             'Biostrings', \
             'dada2', \
             'DESeq2', \
