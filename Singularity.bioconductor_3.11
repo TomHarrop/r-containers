@@ -33,6 +33,7 @@ From: bioconductor/bioconductor_docker:RELEASE_3_11
             'SNPRelate', \
             'systemPipeR', \
             'tximport', \
+            'tximeta', \
             'valr', \
             'VariantAnnotation', \
             'vcfR' \
