@@ -1,14 +1,14 @@
 Bootstrap: docker
-From: bioconductor/bioconductor_docker:RELEASE_3_11
+From: bioconductor/bioconductor_docker:RELEASE_3_12
 
 %help
 
-    R 4.0.0 with Bioconductor 3.11
+    R 4.0.0 with Bioconductor 3.12
     
 %labels
 
     MAINTAINER "Tom Harrop (twharrop@gmail.com)"
-    VERSION "Bioconductor 3.11"
+    VERSION "Bioconductor 3.12"
 
 %post
     # install packages from bioconductor
@@ -29,6 +29,7 @@ From: bioconductor/bioconductor_docker:RELEASE_3_11
             'pheatmap', \
             'phyloseq', \
             'rehh', \
+            'rtracklayer', \
             'ShortRead', \
             'SNPRelate', \
             'systemPipeR', \
