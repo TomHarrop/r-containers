@@ -62,7 +62,7 @@ RUN     Rscript -e "options(Ncpus=8); \
                 'UpSetR', \
                 'valr', \
                 'VariantAnnotation', \
-                'vcfR' \
+                'vcfR', \
                 'VennDiagram', \
                 'viridis' \
                 ), \
