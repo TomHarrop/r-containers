@@ -48,6 +48,7 @@ RUN     Rscript -e "options(Ncpus=8); \
                 'dada2', \
                 'data.table', \
                 'DESeq2', \
+                'DEXSeq', \
                 'extrafont', \
                 'future.apply', \
                 'GenomicAlignments', \
