@@ -1,8 +1,8 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_13
+FROM bioconductor/bioconductor_docker:RELEASE_3_17
 
-LABEL SOFTWARE_NAME R 4.1.0 with Bioconductor 3.13
+LABEL SOFTWARE_NAME R 2022-11-30 r83393 with Bioconductor 3.17
 LABEL MAINTAINER "Tom Harrop"
-LABEL VERSION "Bioconductor 3.13"
+LABEL VERSION "Bioconductor 3.17"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C
@@ -48,6 +48,7 @@ RUN     Rscript -e "options(Ncpus=8); \
                 'dada2', \
                 'data.table', \
                 'DESeq2', \
+                'DEXSeq', \
                 'extrafont', \
                 'future.apply', \
                 'GenomicAlignments', \
