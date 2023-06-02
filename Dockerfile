@@ -73,6 +73,7 @@ RUN     Rscript -e "options(Ncpus=8); \
                 'SNPRelate', \
                 'sysfonts', \
                 'systemPipeR', \
+                'tidyverse', \
                 'tximeta', \
                 'tximport', \
                 'UpSetR', \
