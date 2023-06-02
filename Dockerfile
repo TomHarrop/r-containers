@@ -1,6 +1,6 @@
-FROM bioconductor/bioconductor_docker:3.17-R-4.3.0
+FROM rocker/r2u:22.04
 
-LABEL SOFTWARE_NAME R with Bioconductor
+LABEL SOFTWARE_NAME R with custom packages
 LABEL MAINTAINER "Tom Harrop"
 
 # use the VERSION file to set the version label
@@ -41,8 +41,7 @@ RUN     apt-get autoremove --purge -y && \
         rm -rf /var/lib/apt/lists/*
 
 # r packages
-RUN     Rscript -e "options(Ncpus=8); \
-            BiocManager::install(c( \
+RUN     Rscript -e "install.packages(c( \
                 'adegenet', \
                 'apeglm', \
                 'ashr', \
