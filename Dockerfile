@@ -1,8 +1,13 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_17
+FROM rocker/r2u:22.04
 
-LABEL SOFTWARE_NAME R 2022-11-30 r83393 with Bioconductor 3.17
+LABEL SOFTWARE_NAME R with custom packages
 LABEL MAINTAINER "Tom Harrop"
-LABEL VERSION "Bioconductor 3.17"
+
+# use the VERSION file to set the version label
+COPY VERSION /app/VERSION
+RUN export VERSION=$(cat /app/VERSION) && \
+    echo "VERSION=$VERSION" >> /etc/environment
+LABEL version=$VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C
@@ -20,24 +25,8 @@ RUN     . /etc/os-release \
         cat mirror.txt /etc/apt/sources.list.bak > /etc/apt/sources.list && \
         apt-get update && apt-get upgrade -y --fix-missing
 
-
-# missing dependencies
-# libgdal-dev is required for adegenet (dependencies sf/spdep), but it's
-# missing in the bioconductor container. apt install libgdal-dev fails unless
-# libmysqlclient-dev and default-libmysqlclient-dev are installed manually.
-RUN     apt-get install -y \
-            default-libmysqlclient-dev \
-            libgdal-dev \
-            libmysqlclient-dev
-
-# tidy up
-RUN     apt-get autoremove --purge -y && \
-        apt-get clean && \
-        rm -rf /var/lib/apt/lists/*
-
 # r packages
-RUN     Rscript -e "options(Ncpus=8); \
-            BiocManager::install(c( \
+RUN     Rscript -e "install.packages(c( \
                 'adegenet', \
                 'apeglm', \
                 'ashr', \
@@ -68,6 +57,7 @@ RUN     Rscript -e "options(Ncpus=8); \
                 'SNPRelate', \
                 'sysfonts', \
                 'systemPipeR', \
+                'tidyverse', \
                 'tximeta', \
                 'tximport', \
                 'UpSetR', \
@@ -77,7 +67,7 @@ RUN     Rscript -e "options(Ncpus=8); \
                 'VennDiagram', \
                 'viridis' \
                 ), \
-            type='source', ask=FALSE)"
+            ask=FALSE)"
 
 # plotting extras
 RUN     wget -O "lato.zip" \
@@ -90,5 +80,10 @@ RUN     wget -O "lato.zip" \
 RUN     Rscript -e "library('extrafont') ; \
             font_import(prompt=FALSE) ; \
             loadfonts()"
+
+# tidy up
+RUN     apt-get autoremove --purge -y && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/usr/local/bin/R"]
