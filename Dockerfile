@@ -25,21 +25,6 @@ RUN     . /etc/os-release \
         cat mirror.txt /etc/apt/sources.list.bak > /etc/apt/sources.list && \
         apt-get update && apt-get upgrade -y --fix-missing
 
-
-# missing dependencies
-# libgdal-dev is required for adegenet (dependencies sf/spdep), but it's
-# missing in the bioconductor container. apt install libgdal-dev fails unless
-# libmysqlclient-dev and default-libmysqlclient-dev are installed manually.
-RUN     apt-get install -y \
-            default-libmysqlclient-dev \
-            libgdal-dev \
-            libmysqlclient-dev
-
-# tidy up
-RUN     apt-get autoremove --purge -y && \
-        apt-get clean && \
-        rm -rf /var/lib/apt/lists/*
-
 # r packages
 RUN     Rscript -e "install.packages(c( \
                 'adegenet', \
@@ -95,5 +80,10 @@ RUN     wget -O "lato.zip" \
 RUN     Rscript -e "library('extrafont') ; \
             font_import(prompt=FALSE) ; \
             loadfonts()"
+
+# tidy up
+RUN     apt-get autoremove --purge -y && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/usr/local/bin/R"]
