@@ -1,8 +1,13 @@
-FROM bioconductor/bioconductor_docker:RELEASE_3_17
+FROM bioconductor/bioconductor_docker:3.17-R-4.3.0
 
-LABEL SOFTWARE_NAME R 2022-11-30 r83393 with Bioconductor 3.17
+LABEL SOFTWARE_NAME R with Bioconductor
 LABEL MAINTAINER "Tom Harrop"
-LABEL VERSION "Bioconductor 3.17"
+
+# use the VERSION file to set the version label
+COPY VERSION /app/VERSION
+RUN export VERSION=$(cat /app/VERSION) && \
+    echo "VERSION=$VERSION" >> /etc/environment
+LABEL version=$VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C
