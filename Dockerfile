@@ -83,7 +83,7 @@ RUN     Rscript -e "options(Ncpus=8); \
                 'VennDiagram', \
                 'viridis' \
                 ), \
-            type='source', ask=FALSE)"
+            ask=FALSE)"
 
 # plotting extras
 RUN     wget -O "lato.zip" \
