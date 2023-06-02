@@ -49,6 +49,7 @@ RUN     Rscript -e "install.packages(c( \
                 'Gviz', \
                 'hexbin', \
                 'Mfuzz', \
+                'pathlibr', \
                 'pheatmap', \
                 'phyloseq', \
                 'rehh', \
