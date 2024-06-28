@@ -1,4 +1,4 @@
-FROM rocker/r2u:24           .04
+FROM rocker/r2u:24.04
 
 LABEL SOFTWARE_NAME R with custom packages
 LABEL MAINTAINER "Tom Harrop"
