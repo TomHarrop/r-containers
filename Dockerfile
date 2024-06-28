@@ -1,13 +1,9 @@
-FROM rocker/r2u:22.04
+FROM rocker/r2u:24.04
 
 LABEL SOFTWARE_NAME R with custom packages
 LABEL MAINTAINER "Tom Harrop"
 
-# use the VERSION file to set the version label
-COPY VERSION /app/VERSION
-RUN export VERSION=$(cat /app/VERSION) && \
-    echo "VERSION=$VERSION" >> /etc/environment
-LABEL version=$VERSION
+LABEL version=24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C
@@ -49,7 +45,6 @@ RUN     Rscript -e "install.packages(c( \
                 'Gviz', \
                 'hexbin', \
                 'Mfuzz', \
-                'pathlibr', \
                 'pheatmap', \
                 'phyloseq', \
                 'rehh', \
@@ -71,11 +66,7 @@ RUN     Rscript -e "install.packages(c( \
             ask=FALSE)"
 
 # plotting extras
-RUN     wget -O "lato.zip" \
-            http://www.latofonts.com/download/Lato2OFL.zip && \
-        unzip lato.zip && \
-        mv Lato2OFL /usr/share/fonts/truetype/ && \
-        rm lato.zip && \
+RUN     apt-get install -y fonts-lato && \
         fc-cache -f -v
 
 RUN     Rscript -e "library('extrafont') ; \
