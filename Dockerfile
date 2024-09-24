@@ -3,7 +3,7 @@ FROM rocker/r2u:24.04
 LABEL SOFTWARE_NAME R with custom packages
 LABEL MAINTAINER "Tom Harrop"
 
-LABEL version=24.04
+LABEL version=24.04_cv1
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C
@@ -45,6 +45,7 @@ RUN     Rscript -e "install.packages(c( \
                 'Gviz', \
                 'hexbin', \
                 'Mfuzz', \
+                'pafr', \
                 'pheatmap', \
                 'phyloseq', \
                 'rehh', \
